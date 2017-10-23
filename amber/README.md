@@ -1,5 +1,5 @@
 <p align='center'>
-<img src="/assets/images/freejs_logo.jpg"/>
+<img src="https://avatars0.githubusercontent.com/u/31892139?s=200&v=4"/>
 <br>
 <br>
 FREEJS  X  VUEJS<br>
