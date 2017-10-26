@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app2">
+    <p>
+      yes/no 질문을 물어보세요:
+      <input v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+  <script>
+    var watchExampleVM = new Vue({
+      el: '#app2',
+      data: {
+        question: '',
+        answer: '질문을 하기 전까지는 대답할 수 없습니다.'
+      },
+      watch: {
+        // 질문이 변경 될 때 마다 이 기능이 실행된다.
+        question: function (newQuestion) {
+          this.answer = '입력을 기다리는 중...'
+          this.getAnswer()
+        }
+      },
+      methods: {
+        getAnswer: _.debounce(
+          function () {
+            if (this.question.indexOf('?') === -1) {
+              this.answer = '질문에는 일반적으로 물음표가 포함 됩니다. ;-)'
+              return
+            }
+            this.answer = '생각중...'
+            axios.get('https://yesno.wtf/api')
+              .then(response => this.answer = _.capitalize(response.data.answer))
+              .catch(error => this.answer = '에러! API 요청에 오류가 있습니다. ' + error)
+          }, 500)
+      }
+    })
+  </script>
+</body>
+
+</html>
