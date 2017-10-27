@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app1">
+    <input v-model.lazy="message" placeholder="수정">
+    <p>메시지: {{ message }}</p>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    new Vue({
+      el: '#app1',
+      data: {
+        message: ''
+      }
+    })
+  </script>
+</body>
+
+</html>
