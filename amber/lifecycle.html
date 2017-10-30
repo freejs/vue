@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Vue Sample</title>
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}
+    </div>
+
+    <script src="https://unpkg.com/vue@2.3.3"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello Vue.js!'
+        },
+        //생성되기 전
+        beforeCreate: function() {
+          console.log("beforeCreate");
+        },
+        //생성되었을 때
+        created: function() {
+          console.log("created");
+        },
+        //생성된 객체가 웹페이지로 올라갔을 때
+        mounted: function() {
+          console.log("mounted");
+          this.message = "1"; //
+        },
+        //updated 라이프 싸이클은 뷰에 어떠한 데이터가 변경되었을 때 최신 버전으로 업데이트가 되었을 때 이 로직이 발동을 한다.
+        updated: function() {
+          console.log("updated");
+        }
+      })
+    </script>
+  </body>
+</html>
