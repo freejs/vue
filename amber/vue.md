@@ -128,3 +128,6 @@ var vm = new Vue({
 순서도 찾아서 구현시 참고  
 
 `lifecycle.html` 참고
+
+
+#### 공부합시다
