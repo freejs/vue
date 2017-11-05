@@ -136,7 +136,7 @@ var vm = new Vue({
 화면에 비춰지는 뷰의 단위를 쪼개어 재활용이 가능한 형태로 관리하는 것  
 컴포넌트라는 것은 화면의 한 단위. 이 단위가 세부적으로 쪼개지게 되면 상위 컴포넌트, 하위 컴포넌트가 된다. 상위, 하위의 컴포넌트 방식이 뷰에서 지정해놓은 규격이라고 할 수 있다.  
 
-- global 하게 등록하기
+- global component
 
 ```javascript
 Vue.component('my-component', {
@@ -145,7 +145,7 @@ Vue.component('my-component', {
 ```
 
 
-- local 하게 등록하기
+- local component
 
 ```javascript
 var cmp = {
@@ -164,4 +164,52 @@ new Vue({
     'my-cmp' : cmp
   }
 })
+```
+
+
+```javascript
+
+<html>
+  <head>
+    <title>Vue Sample</title>
+  </head>
+  <body>
+    <div id="app">
+      <button>Parent Component</button>
+      <my-component></my-component>
+      <my-local-component></my-local-component>
+    </div>
+
+    <div id="app2">
+      <my-component></my-component>
+      <my-local-component></my-local-component>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.3.3"></script>
+    <script>
+      // Global Component
+      Vue.component('my-component', {
+        template: '<div>A global component!</div>'
+      });
+      // Local Component
+      var cmp = {
+        template: '<div>A local component!</div>'
+      };
+      new Vue({
+        el: '#app',
+        components: {
+          // 태그명 : 컴포넌트의 내용
+          'my-local-component': cmp
+        }
+      })
+      new Vue({
+        el: '#app2',
+        components: {
+          // 태그명 : 컴포넌트의 내용
+          'my-local-component': cmp
+        }
+      })
+    </script>
+  </body>
+</html>
 ```
