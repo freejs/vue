@@ -130,4 +130,4 @@ var vm = new Vue({
 `lifecycle.html` 참고
 
 
-#### 공부합시다
+#### 컴포넌트
