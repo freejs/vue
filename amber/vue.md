@@ -131,3 +131,37 @@ var vm = new Vue({
 
 
 #### 컴포넌트
+
+**컴포넌트란**  
+화면에 비춰지는 뷰의 단위를 쪼개어 재활용이 가능한 형태로 관리하는 것  
+컴포넌트라는 것은 화면의 한 단위. 이 단위가 세부적으로 쪼개지게 되면 상위 컴포넌트, 하위 컴포넌트가 된다. 상위, 하위의 컴포넌트 방식이 뷰에서 지정해놓은 규격이라고 할 수 있다.  
+
+- global 하게 등록하기
+
+```javascript
+Vue.component('my-component', {
+  // ...
+})
+```
+
+
+- local 하게 등록하기
+
+```javascript
+var cmp = {
+  data: function(){
+    return{
+      // ...
+    };
+  }
+  template: '<hr>',
+  methods: {}
+}
+
+// 아래 Vue 인스턴스에서만 활용할 수 있는 로컬(지역) 컴포넌트 등록
+new Vue({
+  components: {
+    'my-cmp' : cmp
+  }
+})
+```
